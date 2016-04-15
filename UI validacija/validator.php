@@ -35,6 +35,7 @@ function initSosedi()
     
 }
 
+// funkcija, ki pove, ali sta dve polji sosednji. 
 function jeSosed($zacetnoPolje, $koncnoPolje)
 {
        if($koncnoPolje == sosedi[$zacetnoPolje]['TL'] || $koncnoPolje == sosedi[$zacetnoPolje]['TR'] 
