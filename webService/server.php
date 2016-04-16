@@ -26,7 +26,7 @@
         $response['status_message']=$status_message;
         $response['data']=$data;
         $json_response=json_encode($response);
-        echo "Success";
+        //echo "Success";
         return $json_response;
     }
 ?>
