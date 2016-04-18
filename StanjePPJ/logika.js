@@ -149,11 +149,11 @@ $(function()
             
                 for(var i = 0; i < stevilaB.length; i++ )
                 {
+                    niz += stevilaB[i];
                     if(kralji.indexOf(stevilaB[i]) > -1)
                     {
                         niz += "K";
                     }
-                    niz += stevilaB[i];
                     if(i < stevilaB.length - 1)
                     {
                         niz += ",";
@@ -162,8 +162,6 @@ $(function()
                 
             }
 
-            if(stevilaW.length > 0)
-            {
                 
                 if(B.length > 0) niz += "/";
                 
@@ -171,17 +169,18 @@ $(function()
             
                 for(var i = 0; i < stevilaW.length; i++ )
                 {
+
+                    niz += stevilaW[i];
                     if(kralji.indexOf(stevilaW[i]) > -1)
                     {
                         niz += "K";
                     }
-                    niz += stevilaW[i];
                     if(i < stevilaW.length - 1)
                     {
                         niz += ",";
                     }
                 } 
-            }
+            
             
 	    if(stevilaB.length > 0 || stevilaW.length > 0)
             niz += ";";
@@ -189,7 +188,7 @@ $(function()
             
             $.ajax(
                 {
-                    url: "streznik.php",
+                    url: "sintakticniAnalizator.php",//"streznik.php",
                     method: "post", 
                     data: JSON.stringify({"niz" : niz}), 
                     contentType: "application/json",
@@ -219,34 +218,45 @@ $(function()
                         
                         var leksikalniDel = data.leksikalnaAnaliza;
                         
-                       for(var i = 0; i < niz.length; i++)
-                       {
-                            var vrstica = $("<tr></tr>");
-                            var celica = $("<td></td>");
-                            celica.html(niz[i]);
-                            if(niz[i+1] != "," && !isNaN(parseInt(niz[i])))
-                            {
-                                celica.html(niz[i]+niz[i+1]);
-                                vrstica.append(celica);
-                                celica = $("<td></td>");
-                                celica.html(leksikalniDel[niz[i]+niz[i+1]]);
-                                vrstica.append(celica);
-                                rez.append(vrstica);
-                                i++;
-                                continue;
-                            }
-                            vrstica.append(celica);
-                            celica = $("<td></td>");
-                            celica.html(leksikalniDel[niz[i]]);
-                            vrstica.append(celica);
-                            
-                            rez.append(vrstica);
-                       }
-     
-     
+                       $.each(leksikalniDel,
+                           function()
+                           {
+                               $.each(this,
+                                   function(key, val)
+                                   {
+                                        var vrstica = $("<tr></tr>");
+                                        var celica = $("<td></td>");
+                                        celica.html(key);
+                                        vrstica.append(celica);
+                                        celica = $("<td></td>");
+                                        celica.html(val);
+                                        vrstica.append(celica);
+                                        
+                                        rez.append(vrstica); 
+                                   }
+                               );
+                               
+
+                           }                          
+                       );                       
                        
-                      
                         $("#rezultat").append(rez);
+                        
+                        var sintakticniDel = data.sintakticnaAnaliza.napake;
+                        
+                        
+                        
+                        $.each(sintakticniDel, function()
+                        {
+                            var p = $("<p></p>");
+                            p.html(this);
+                            p.css("color","red");
+                            p.css("font-size", "20px");
+                            p.css("text-align", "center");
+                            $("#rezultat").append(p);  
+                        });
+                        
+                        
                     }
                     
                 }

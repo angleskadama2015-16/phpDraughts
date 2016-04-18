@@ -14,31 +14,27 @@ function leksikalnaAnaliza($niz)
             if($testToken == "LexErr")
             {
                 $a = array('napaka' => "Leksikalna napaka na mestu ".$i."!", );
-                
                 return $a;
             }
             else 
             {
                 if(Token($lexem) == "idPolja")
                 {
-                     if($i < strlen($niz) - 1)
+                     if($i < strlen($niz) - 1 && Token($niz[$i+1]) == "idPolja")
                      {
-                        $naslednjiZnak = $niz[$i+1];
-                        if(Token($naslednjiZnak) != "idPolja")
-                        {
-                            $simbolnaTabela[$lexem] = $testToken;
-                        } 
-                        else 
-                        {
+                           $naslednjiZnak = $niz[$i+1];
                            $lexem .= $naslednjiZnak;
-                           $simbolnaTabela[$lexem] = Token($lexem);
+                           $simbolnaTabela[] = array($lexem => Token($lexem));
                            $lexem = "";
                            $i++;
-                        }
                      }
                 }
                 
-                $simbolnaTabela[$lexem] = $testToken;
+                if($lexem != "")
+                {
+                   $simbolnaTabela[] = array($lexem =>$testToken);  
+                }
+               
                 $lexem = "";
             }
             
@@ -76,5 +72,7 @@ function Token($niz)
         return $tokeni[$niz];
     }
 }
+
+
 
 ?>

@@ -1,0 +1,12 @@
+S ::= B : P / W : P; 
+P ::= int V L P | eps
+V ::= K | eps 
+L ::= , | eps
+
+
+
+
+
+
+
+
