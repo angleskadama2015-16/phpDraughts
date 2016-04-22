@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html>
+    <head>    
+        <title>Stanje IGRE</title> 
+        <link rel="stylesheet" href="index.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <script src="logika.js" type="text/javascript"></script>
+        <meta name="author" content="Ivan Kovačič"/>
+    </head>    
+    <body>  
+        <div id="wrap">
+            <h1>Predstavitev stanja</h1>
+            <div class="gumbi">   
+                <label>BARVA FIGURE: </label>
+                <button id="gmbCrna">Črna</button>
+                <button id="gmbBela">Bela</button>
+            </div>
+            <div class="gumbi">   
+                <label>KRALJ: </label>
+                <button id="gmbKralj">DA</button>
+                <button id="gmbNiKralj">NE</button>
+            </div>
+            <p>Trenutno izbrana barva: <span id="barva"></span></p>
+            <table id="igralnoPolje">
+            <p>Trenutno izbrana kralj: <span id="kralj"></span></p>
+            <table id="igralnoPolje">  
+                
+            </table>
+            <button id="poslji">Pošlji!</button>
+            
+            <div id="rezultat">
+            </div>
+        </div>
+    </body>
+</html>
