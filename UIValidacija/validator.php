@@ -251,6 +251,30 @@ function validiraj($prejetijson)
     
 }
 
+function jeKralj($poteza)
+{
+    // če je prvi v vektorju kraljev 
+    // true, sicer false 
+}
+
+function potrdiSmer($poteza)
+{
+    // dobi sosede 
+    // če je kralj 
+    // true
+    // else če hoče dol .. false  
+}
+
+function napraviPotezo($prejetijson)
+{
+    $jeVeljavna = validiraj($prejetijson);
+    if($jeVeljavna)
+    {
+        // spremeni trenutno stanje 
+        // vrni trenutno stanje 
+    }
+}
+
 
 
 
