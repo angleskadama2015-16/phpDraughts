@@ -7,7 +7,7 @@ $niz = json_decode(file_get_contents("php://input"));
 
 $i = 0;
 $napake = array(); 
-$testniNiz =   $niz->niz;  // "W:K,2K,3K/B:4,2K,4;";
+$testniNiz =   "B:K,2K,3K/B:4,2K,4;"; // ;   $niz->niz;
 $trenutniToken = "";
 $simbolnaTabela = leksikalnaAnaliza($testniNiz);
 
