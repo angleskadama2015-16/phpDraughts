@@ -4,23 +4,54 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
+            
+            /*
+               Resize polja, da lepo prikaže na vseh ekranih
+            */                        
+            var polje = $("svg"); 
+            
+            var width = window.innerWidth; 
+            var height = window.innerHeight; 
+            
+            if(width >= height) 
+            {
+                mera = height*0.8;
+            }
+            else 
+            {
+                mera = width*0.8;
+            }
+            
+            
+            var svgPolje = $("#polje"); 
+            
+            svgPolje.attr("width", mera);
+            
+            svgPolje.attr("height", mera);
+            
+            svgPolje.attr("viewbox", "0 0 " + mera + " " + mera);
+            
+            //$("#gPolje").attr("transform", "scale(" + mera/8 + "," + mera/8 + ")  translate(-1,-1)");
+                        
             $(".darkUse").click(function(){
-                $currentColor=$(event.target).attr("xlink:href");
+                $currentColor=$(this).attr("xlink:href");
                 if($currentColor=="#darksquare") {
-                    $(event.target).attr("xlink:href", "#redsquare");
+                    $(this).attr("xlink:href", "#redsquare");
                 }
                 else{
-                    $(event.target).attr("xlink:href", "#darksquare");
+                    $(this).attr("xlink:href", "#darksquare");
                 }
                 $x=$(this).attr('x'); //koordinata x
                 $y=$(this).attr('y'); //koordinata y
                 $zaporedna=$(this).attr('name'); //v name hranimo zaporedno številko polja
                 alert("x:"+$x+" y:"+$y+" st. crnega polja: "+$zaporedna);
+            
+                
             });
         });
     </script>
-    <div align="center" class="table-responsive">
-        <svg width="800" height="800"  viewBox="0 0 800 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <div id="poljeDiv" align="center" class="table-responsive">
+        <svg id="polje" width="800" height="800"  viewBox="0 0 800 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <style type="text/css">
                     text { font-size:40pt; font-family: sans-serif; text-anchor: middle; fill:#feb; }
@@ -29,7 +60,7 @@
                 <rect id="darksquare" x="0" y="0" width="1" height="1" style="fill:black;"/>
                 <rect id="redsquare" x="0" y="0" width="1" height="1" style="fill:red;"/>
             </defs>
-            <g transform="scale(100,100) translate(-1,-1)">
+            <g id="gPolje" transform="scale(100,100) translate(-1,-1)">
                 <!-- The board -->
                 <g y="1" class="lightrow">
                     <use xlink:href="#lightsquare" x="1" y="1"/>
